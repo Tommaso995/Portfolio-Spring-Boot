@@ -43,7 +43,7 @@ public class MessageRepoImpl implements MessageRepo {
 
 		Message r = entity.find(Message.class, mess.getId());
 		
-		entity.remove(mess);
+		entity.remove(r);
 		
 		return r;
 	}
@@ -51,13 +51,22 @@ public class MessageRepoImpl implements MessageRepo {
 	@Override
 	@Transactional
 	public Message updateMessageById(MessageDto mess) {
-
-		Message e = new Message(mess);
 		
-		entity.remove(mess);
-		entity.merge(mess);
+	
+		MessageDto message = entity.find(MessageDto.class, mess.getId());
 		
-		return e;
+		
+		entity.remove(message);
+		
+		Message messa = new Message(message);
+		
+		entity.merge(messa);
+		
+		/*message.setId(mess.getId());
+		message.setTitolo(mess.getTitolo());
+		message.setMessaggio(mess.getMessaggio());*/
+		
+		return messa;
 	}
 
 	@SuppressWarnings("unchecked")

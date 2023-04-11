@@ -1,19 +1,13 @@
 package com.portfolio.dto;
 
-import org.springframework.boot.autoconfigure.domain.EntityScan;
 
 import com.portfolio.entity.Message;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
 
-@EntityScan
-@Table(name = "message")
+
 public class MessageDto {
 
-	@Id
-	@Column(name = "id_message")
+
 	int Id;
 	String titolo;
 	String email;
